@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kiểm tra BMI</title>
+</head>
+<body>
+
+<h2>Kiểm tra sức khỏe BMI</h2>
+
+<form>
+    Cân nặng (kg):
+    <input type="number" id="weight"><br><br>
+
+    Chiều cao (cm):
+    <input type="number" id="height"><br><br>
+
+    <button type="button" onclick="calculateBMI()">
+        Tính BMI
+    </button>
+</form>
+
+<p id="result"></p>
+
+<script>
+function calculateBMI() {
+    let weight = Number(document.getElementById("weight").value);
+    let height = Number(document.getElementById("height").value);
+
+    if (weight <= 0 || height <= 0) {
+        alert("Vui lòng nhập dữ liệu hợp lệ!");
+        return;
+    }
+
+    height = height / 100;
+
+    let BMI = weight / (height * height);
+    let result = "";
+
+    if (BMI > 40) {
+        result = "Béo phì cấp độ III";
+    } else if (BMI >= 35) {
+        result = "Béo phì cấp độ II";
+    } else if (BMI >= 30) {
+        result = "Béo phì cấp độ I";
+    } else if (BMI >= 25) {
+        result = "Thừa cân";
+    } else if (BMI >= 18.5) {
+        result = "Bình thường";
+    } else if (BMI >= 17) {
+        result = "Gầy cấp độ I";
+    } else if (BMI >= 16) {
+        result = "Gầy cấp độ II";
+    } else {
+        result = "Gầy cấp độ III";
+    }
+
+    document.getElementById("result").innerHTML =
+        "Chỉ số BMI: " + BMI.toFixed(2) +
+        "<br>Phân loại: " + result;
+}
+</script>
+
+</body>
+</html>
